@@ -59,7 +59,12 @@ import java.util.List;
 
 //1.9 make enemy tanks move and can fire at u
 //as long as enemy tanks's direction is not stop, it will move
+
 // we can set enemy tank direction to be random as it move each step
+//now the tank change direction so quick, not usual, we should make it more normal
+//let it more like 5 steps then change dir
+
+//make enemy tank fire at you
 
 public class TankClient extends Frame{//extends Frame so u can draw a canvas
 
@@ -155,6 +160,8 @@ public class TankClient extends Frame{//extends Frame so u can draw a canvas
         for(int i = 0; i < missiles.size(); i++){
             Missile m = missiles.get(i);
             //m.hitTank(enemyTank);
+            m.hitTanks(tanks);
+            m.hitTank(myTank);
             m.draw(g);
 //            if(!m.isLive()){
 //                missiles.remove(m); //method 2 use thread to clean missiles outside the canvas,
@@ -164,7 +171,7 @@ public class TankClient extends Frame{//extends Frame so u can draw a canvas
 //                m.draw(g);
 //            }
 
-            m.hitTanks(tanks);
+
 
         }
 

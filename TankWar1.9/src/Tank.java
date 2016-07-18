@@ -30,7 +30,20 @@ public class Tank {
     private Direction ptDir = Direction.D;// we need to draw tank barrel according to direction
 
 
+    private int step = r.nextInt(12) + 3;//to make enemy tank move random steps in one dir, then
+    //change dir, move anoter random steps
+    //0--11 + 3 -> 3--14
+
+
     TankClient tc = null;
+
+    public boolean isGood() {
+        return good;
+    }
+
+    public void setGood(boolean good) {
+        this.good = good;
+    }
 
     private boolean good;
 
@@ -172,20 +185,34 @@ public class Tank {
         if(!good){
             //if tank is enemy, we want it to change direction each time he moves
             Direction[] dirs = Direction.values();// enum converted to array
-            int randomNumber = r.nextInt(dirs.length);// make a num from 0 to length - 1
-            dir = dirs[randomNumber];
+
+            //change dir when step is 0
+            if(step ==0){
+                step = r.nextInt(12) + 3;
+                int randomNumber = r.nextInt(dirs.length);// make a num from 0 to length - 1
+                dir = dirs[randomNumber];
+            }
+
+            step--;
+
+            if(r.nextInt(40) > 38){
+                this.fire();
+            }
         }
 
     }
 
     public Missile fire(){
+        if(!live){
+            return null;
+        }
         //x is used for missile, this.x is from tank
         int x = this.x + Tank.WIDTH/2 - Missile.WIDTH/2;
         int y = this.y + Tank.HEIGHT/2 - Missile.HEIGHT/2;
         //Missile m = new Missile(x, y, ptDir); //x, y from tank
         // now we need to pass tc to m, if not, null pointer appears
-        Missile m = new Missile(x, y, ptDir, this.tc); //x, y from tank
-        //tc.missiles.add(m);  // second method
+        Missile m = new Missile(x, y, good,ptDir, this.tc); //x, y from tank
+        tc.missiles.add(m);  // second method
         return m;
     }
 

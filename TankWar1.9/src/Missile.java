@@ -16,6 +16,7 @@ public class Missile {
 
     int x,y;
     Tank.Direction dir;
+    private boolean good;
 
     private boolean live = true; // if missile is alive
 
@@ -26,10 +27,11 @@ public class Missile {
         this.y = y;
     }
 
-    public Missile(int x, int y, Tank.Direction dir, TankClient tc) {
+    public Missile(int x, int y, boolean good ,Tank.Direction dir, TankClient tc) {
         this.dir = dir;
         this.x = x;
         this.y = y;
+        this.good = good;
         this.tc = tc;
     }
 
@@ -96,7 +98,7 @@ public class Missile {
 
     //missile has a surrounded rectangle, so does tank, we can use rectangle class method to check if they touch
     public boolean hitTank(Tank t){
-        if(this.getRect().intersects(t.getRect()) && t.isLive()){//if tank is not live, missile can still touch that tank even though we do not draw that tank
+        if(this.live && this.getRect().intersects(t.getRect()) && t.isLive() && this.good != t.isGood()){//if tank is not live, missile can still touch that tank even though we do not draw that tank
             t.setLive(false);
             this.live = false;
             Explode e = new Explode(x, y, tc);
@@ -118,6 +120,5 @@ public class Missile {
         return false;
 
     }
-
 
 }
