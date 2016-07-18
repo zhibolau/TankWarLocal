@@ -58,6 +58,9 @@ public class Tank {
 
     public void draw(Graphics g){
         if(!live){
+            if(!good){
+                tc.tanks.remove(this);
+            }
             return;//if tank is died, we do not draw it
         }
 

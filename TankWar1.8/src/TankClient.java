@@ -55,7 +55,7 @@ import java.util.List;
 
 
 //1.8 add multiple enemy tanks
-
+// u can also fire at enemy tanks
 public class TankClient extends Frame{//extends Frame so u can draw a canvas
 
     public static final int GAME_WIDTH = 1600;
@@ -145,6 +145,7 @@ public class TankClient extends Frame{//extends Frame so u can draw a canvas
 
         g.drawString("missiles count: " + missiles.size(),10, 50);
         g.drawString("explosive count: " + explodes.size(),10, 70);
+        g.drawString("enemy tanks count: " + tanks.size(),10, 90);
 
         for(int i = 0; i < missiles.size(); i++){
             Missile m = missiles.get(i);
