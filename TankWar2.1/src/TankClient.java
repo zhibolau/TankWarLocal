@@ -70,6 +70,9 @@ import java.util.List;
 //2.0 add walls, missile hit wall, missile disappear, tank hit wall, tank move
 // randomly not hitting wall
 
+
+//2.1 enemy tank cannot go throgh each other
+
 public class TankClient extends Frame{//extends Frame so u can draw a canvas
 
     public static final int GAME_WIDTH = 1600;
@@ -194,6 +197,7 @@ public class TankClient extends Frame{//extends Frame so u can draw a canvas
             Tank t = tanks.get(i);
             t.collidesWithWall(w1);//tank cannot go through wall
             t.collidesWithWall(w2);
+            t.collidesWithTanks(tanks);
             t.draw(g);// now we cannot draw tank, because we do not add any tank into that list
         }
 
