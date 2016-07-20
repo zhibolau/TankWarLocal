@@ -362,6 +362,11 @@ public class Tank {
     }
 
 
+    /**
+     *
+     * @param w : the wall being hitted
+     * @return : true if wall is hitted
+     */
     public boolean collidesWithWall(Wall w){
         if(this.live && this.getRect().intersects(w.getRect())){
             this.stay();

@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by zhiboliu on 16-7-9.
+ * tank war main window
  */
 
 
@@ -87,6 +88,9 @@ import java.util.List;
 
 public class TankClient extends Frame{//extends Frame so u can draw a canvas
 
+    /**
+     * whole tank game width
+     */
     public static final int GAME_WIDTH = 1600;
     public static final int GAME_HEIGHT = 1200;
 
@@ -134,6 +138,9 @@ public class TankClient extends Frame{//extends Frame so u can draw a canvas
     }
 
 
+    /**
+     * show tank main window
+     */
     public void lauchFrame(){
 
         for(int i = 0; i < 10; i++){
